@@ -1,2 +1,2 @@
 redirects:
-    no: data
+    host: localhost
