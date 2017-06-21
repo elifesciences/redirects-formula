@@ -13,7 +13,7 @@ nginx-configuration:
 {% if salt['elife.only_on_aws']() %}
 redirects-web-certificate-file:
     file.managed:
-        - name: /etc/certificates/certificate.crt
+        - name: /etc/certificates/redirects/certificate.crt
         - source: salt://redirects/config/etc-certificates-redirects-certificate.crt
         - makedirs: True
         - require:
@@ -21,7 +21,7 @@ redirects-web-certificate-file:
 
 redirects-web-private-key:
     file.managed:
-        - name: /etc/certificates/privkey.pem
+        - name: /etc/certificates/redirects/privkey.pem
         - source: salt://redirects/config/etc-certificates-redirects-privkey.pem
         - makedirs: True
         - require:
@@ -29,7 +29,7 @@ redirects-web-private-key:
 
 redirects-web-fullchain-key:
     file.managed:
-        - name: /etc/certificates/fullchain.pem
+        - name: /etc/certificates/redirects/fullchain.pem
         - source: salt://redirects/config/etc-certificates-redirects-fullchain.pem
         - makedirs: True
         - require:
