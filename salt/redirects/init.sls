@@ -38,7 +38,7 @@ redirects-web-fullchain-key:
 redirects-web-complete-cert:
     cmd.run:
         - name: cat certificate.crt fullchain.pem > certificate.chained.crt
-        - cwd: /etc/certificates/
+        - cwd: /etc/certificates/redirects/
         - require:
             - redirects-web-fullchain-key
             - redirects-web-certificate-file
