@@ -34,4 +34,13 @@ redirects-web-fullchain-key:
         - makedirs: True
         - require:
             - web-certificates-dir
+
+redirects-web-complete-cert:
+    cmd.run:
+        - name: cat certificate.crt fullchain.pem > certificate.chained.crt
+        - cwd: /etc/certificates/
+        - require:
+            - redirects-web-fullchain-key
+            - redirects-web-certificate-file
+
 {% endif %}
