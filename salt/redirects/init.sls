@@ -1,20 +1,3 @@
-{% if salt['grains.get']('osrelease') == '18.04' %}
-# just a test. this problem only affects redirects so far
-# if it works, I'll roll it out to builder-base in a nicer fashion
-# https://bugs.launchpad.net/ubuntu/+source/nginx/+bug/1581864
-nginx-systemd-hack:
-    cmd.run:
-        - name: |
-            set -e
-            mkdir -p /etc/systemd/system/nginx.service.d
-            printf "[Service]\nExecStartPost=/bin/sleep 0.1\n" > /etc/systemd/system/nginx.service.d/override.conf
-            systemctl daemon-reload
-        - unless: # override exists
-            - test -e /etc/systemd/system/nginx.service.d/override.conf
-        - require_in:
-            - nginx-server-service
-{% endif %}
-
 nginx-configuration:
     file.managed:
         - name: /etc/nginx/sites-enabled/redirects.conf
