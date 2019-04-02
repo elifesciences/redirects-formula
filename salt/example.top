@@ -1,6 +1,7 @@
 base:
     '*':
         - elife
+        - elife.swapspace
         - elife.nginx
         - elife.nginx-error-pages
         - redirects
