@@ -1,1 +1,1 @@
-elifeFormula('redirects', '', null, ['s2004'])
+elifeFormula('redirects')
