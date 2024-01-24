@@ -1,0 +1,19 @@
+(certs) {
+    tls /etc/certificates/certificate.chained.crt /etc/certificates/privkey.pem
+}
+
+(config) {
+    redir https://{{ pillar.redirects.host }}{uri}
+    header Cache-Control "public, max-age=86400, immutable"
+}
+
+:80 {
+    import config
+}
+
+{% if salt['elife.only_on_aws']() %}
+:443 {
+    import certs
+    import config
+}
+{% endif %}
